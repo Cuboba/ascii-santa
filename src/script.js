@@ -109,32 +109,26 @@ function onWindowResize() {
 
 }
 
-const clock = new THREE.Clock()
-let previousTime = 0
-
 function animate() {
 
     requestAnimationFrame( animate );
-    
+
     render();
 
 }
 
-
 function render() {
 
-    const elapsedTime = clock.getElapsedTime()
-    const deltaTime = elapsedTime - previousTime
-    previousTime = elapsedTime
+    const timer = Date.now() - start;
 
-        // Update mixer
+    // Update mixer
     if ( mixer !== null )
     {
-        mixer.update(deltaTime * 0.000001)
+        mixer.update(timer * 0.00001)
     }
 
-    controls.update();
 
+    controls.update();
 
     effect.render( scene, camera );
 
